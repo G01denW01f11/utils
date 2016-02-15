@@ -37,7 +37,7 @@ public class TestRunner {
         } catch (IllegalAccessException e) {
             throw new AssertionError("Test's setUp method must be public");
         } catch (NoSuchMethodException e) {
-            //Not all tests need to have a setUp() method
+            //Not all com.g01denw01f11.utils.tests need to have a setUp() method
             //so just don't do anything
         }
 
@@ -80,7 +80,7 @@ public class TestRunner {
 
     private void printResults() {
         int numFailed = testMethods.size() - failedTests.size();
-        System.out.printf("Passed %d tests of %d\n", numFailed, testMethods.size());
+        System.out.printf("Passed %d com.g01denw01f11.utils.tests of %d\n", numFailed, testMethods.size());
         for (AssertionError e : failedTests.keySet()) {
             System.out.printf("Failed test %s: %s", failedTests.get(e).getName(), e.getMessage());
         }
