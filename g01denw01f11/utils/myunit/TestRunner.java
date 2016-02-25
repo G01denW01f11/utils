@@ -1,5 +1,7 @@
 package com.g01denw01f11.utils.myunit;
 
+import com.g01denw01f11.utils.ArrayList.ArrayList;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -54,12 +56,10 @@ public class TestRunner {
     }
 
     private void runTest(TestCase test) throws InvocationTargetException {
-        //This method can throw if the TestCase's setUp() method throws something
-        //If this happens, the tests will be meaningless, so we'll just
-        //throw everything back to the caller
-        setUp(test);
-
-        for (Method method : testMethods) {
+        ArrayList<Method> tests = test.getTests();
+        for (int i = 0; i < tests.getSize(); ++i) {
+            setUp(test);
+            Method method = tests.get(i);
             if (method.getName().contains("Throws")) {
                 @SuppressWarnings("unchecked")
                 Class<Throwable> err = (Class<Throwable>) method.getParameterTypes()[0];

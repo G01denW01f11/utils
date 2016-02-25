@@ -8,9 +8,10 @@ import com.g01denw01f11.utils.myunit.TestCase;
 @SuppressWarnings("unused")
 public class AssertionTests extends TestCase {
 
+    private String testString;
+
     public void setUp() {
         testString = "Initialized";
-        callingCount += 1;
     }
 
     public void testAssertTrue() {
@@ -48,12 +49,4 @@ public class AssertionTests extends TestCase {
     public void testSetupCalled() {
         assertEqual(testString, "Initialized");
     }
-
-    public void testSetupCalledOnlyOnce() {
-        assertEqual(callingCount, 1);
-    }
-
-    private String testString;
-    private static int callingCount = 0;
-
 }

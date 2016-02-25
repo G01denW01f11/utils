@@ -12,6 +12,7 @@ public class Test {
      public static void main(String args[]){
          TestRunner runner = new TestRunner();
          runner.addTest(new AssertionTests());
+         runner.addTest(new ArrayListTests());
          try {
              runner.runTests();
          } catch (InvocationTargetException e) {
