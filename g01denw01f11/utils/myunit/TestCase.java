@@ -1,6 +1,6 @@
 package com.g01denw01f11.utils.myunit;
 
-import com.g01denw01f11.utils.ArrayList.ArrayList;
+import com.g01denw01f11.utils.Collections.ArrayList;
 
 import java.lang.reflect.Method;
 
@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
  */
 public abstract class TestCase {
 
+    @SuppressWarnings("unused")
     public abstract void setUp();
 
     public ArrayList<Method> getTests() {
@@ -101,6 +102,7 @@ public abstract class TestCase {
         }
 
         if (o1.compareTo(o2) >= 0) {
+            System.out.println("Throwing");
             throw new AssertionError(message);
         }
     }

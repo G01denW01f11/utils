@@ -18,32 +18,20 @@ public class AssertionTests extends TestCase {
         assertTrue(true);
     }
 
-    public void testAssertTrueThrowsOnFalse(AssertionError e) {
-        assertTrue(false);
-    }
-
     public void testAssertFalse() {
         assertFalse(false);
-    }
-
-    public void testAssertThrows(NullPointerException e) {
-        throw new NullPointerException("Test method");
     }
 
     public void testAssertEqual() {
         assertEqual(1, 1);
     }
 
-    public void testAssertEqualThrowsWhenUnequal(AssertionError e) {
-        assertEqual(1, 2);
-    }
-
     public void testAssertNotEqual() {
         assertNotEqual("foo", "bar");
     }
 
-    public void testAssertNotEqualThrowsWhenEqual(AssertionError e) {
-        assertNotEqual("Foo", "Foo");
+    public void testLessThan() {
+        assertLessThan("bar", "foo");
     }
 
     public void testSetupCalled() {

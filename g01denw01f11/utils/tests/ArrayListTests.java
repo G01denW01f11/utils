@@ -1,6 +1,6 @@
 package com.g01denw01f11.utils.tests;
 
-import com.g01denw01f11.utils.ArrayList.ArrayList;
+import com.g01denw01f11.utils.Collections.ArrayList;
 import com.g01denw01f11.utils.myunit.TestCase;
 
 /**

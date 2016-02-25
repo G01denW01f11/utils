@@ -1,6 +1,6 @@
 package com.g01denw01f11.utils.myunit;
 
-import com.g01denw01f11.utils.ArrayList.ArrayList;
+import com.g01denw01f11.utils.Collections.ArrayList;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -15,8 +15,9 @@ import java.util.Map;
 public class TestRunner {
 
     private List<TestCase> tests = new LinkedList<>();
-    private List<Method> testMethods = new LinkedList<>();
     private Map<AssertionError, Method> failedTests = new HashMap<>();
+
+    private int numTests;
 
     //For color output
     //This apparently doesn't work on Windows, but I don't care
@@ -29,6 +30,8 @@ public class TestRunner {
         //I can't imagine that runTests() will be called more than once during a single
         //execution of the program, but just to be safe...
         failedTests.clear();
+        numTests = 0;
+
         for (TestCase test : tests) {
             runTest(test);
         }
@@ -37,11 +40,6 @@ public class TestRunner {
 
     public void addTest(TestCase testCase) {
         tests.add(testCase);
-        for (Method method : testCase.getClass().getMethods()) {
-            if (method.getName().startsWith("test")) {
-                testMethods.add(method);
-            }
-        }
     }
 
     private void setUp(TestCase test) throws InvocationTargetException {
@@ -59,6 +57,7 @@ public class TestRunner {
         ArrayList<Method> tests = test.getTests();
         for (int i = 0; i < tests.getSize(); ++i) {
             setUp(test);
+            numTests += 1;
             Method method = tests.get(i);
             if (method.getName().contains("Throws")) {
                 @SuppressWarnings("unchecked")
@@ -98,9 +97,10 @@ public class TestRunner {
     private void printGreen(String message) {
         System.out.printf("%s%s%s", ANSI_GREEN, message, ANSI_RESET);
     }
+
     private void printResults() {
-        int numFailed = testMethods.size() - failedTests.size();
-        printGreen(String.format("Passed %d tests of %d\n", numFailed, testMethods.size()));
+        int numFailed = numTests - failedTests.size();
+        printGreen(String.format("Passed %d tests of %d\n", numFailed, numTests));
         for (AssertionError e : failedTests.keySet()) {
             printRed(String.format("Failed test %s: %s\n", failedTests.get(e).getName(), e.getMessage()));
         }
